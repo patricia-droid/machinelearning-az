@@ -22,7 +22,7 @@ y = dataset.iloc[:, 3].values
 
 # Tratamiento de los NAs
 from sklearn.impute import SimpleImputer
-imputer = SimpleImputer(missing_values = np.nan, strategy = "mean", verbose=0)
+imputer = SimpleImputer(missing_values = np.nan, strategy = "mean")
 imputer = imputer.fit(X[:,1:3]) 
 X[:, 1:3] = imputer.transform(X[:,1:3])
 
@@ -38,7 +38,8 @@ ct = ColumnTransformer(
     remainder='passthrough'                        
 )
 
-X = np.array(ct.fit_transform(X), dtype=np.float)
+X = np.array(ct.fit_transform(X), dtype=float)
+
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
 
